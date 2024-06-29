@@ -1,0 +1,39 @@
+# Git fecth y  el --detach
+Cuando ejecutas git fetch y te sugiere usar la opción --detach, es posible que te encuentres en una situación donde necesitas trabajar con una rama remota específica sin afectar tu rama actual. Aquí te explico cómo y cuándo usar esta opción:
+
+## ¿Qué significa --detach?
+El modo --detach se usa para desasociar (detachment) el HEAD de cualquier rama. Esto significa que estás trabajando en un estado temporal, donde puedes explorar el historial o cambios sin modificar tu rama actual.
+
+## Uso común de --detach
+Al usar git fetch seguido de git checkout --detach, puedes explorar el contenido de una rama remota sin modificar tu rama local. Esto es útil si deseas revisar cambios o realizar pruebas sin alterar tu rama actual.
+
+* **Pasos para usar --detach**
+Fetch para obtener las últimas actualizaciones del repositorio remoto:
+```sh
+  git fetch origin
+```
+
+* **Pagar en modo--detach para revisar una rama remota sin cambiar tu rama local:**
+```sh
+  git checkout --detach origin/remote-branch
+```
+
+Aquí, origin/remote-branch es la referencia a la rama remota específica que deseas revisar.
+
+## Ejemplo Completo
+Supongamos que tienes una rama remota llamada feature-branch y deseas revisar su estado sin cambiar tu rama actual. Harías lo siguiente:
+```sh
+  git fetch origin
+  git checkout --detach origin/feature-branch
+```
+Ahora, estás en un estado "detached HEAD" en feature-branch y puedes explorar los cambios, revisar commits, ejecutar el código, etc., sin afectar tu rama local.
+
+## Consideraciones
+* **Estado Temporal:** Mientras estás en un estado detached, cualquier cambio que realices no estará asociado a ninguna rama. Si deseas guardar esos cambios, deberás crear una nueva rama o aplicar los cambios a una rama existente.
+* **Crear una Nueva Rama (opcional):** Si después de revisar decides que necesitas trabajar en estos cambios, puedes crear una nueva rama desde el estado detached:
+```sh
+  git checkout -b new-branch-name
+```
+
+## Concluir
+El uso de --detach es útil para revisar y explorar ramas remotas sin afectar tu trabajo actual. Es especialmente valioso para la revisión de código y pruebas antes de integrar cambios en tu rama de trabajo principal.
